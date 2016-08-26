@@ -131,12 +131,12 @@
     <Compile Include="AppDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\input_code_big.png" />
-    <BundleResource Include="Resources\input_code_big%402x.png" />
-    <BundleResource Include="Resources\input_code_big%403x.png" />
-    <BundleResource Include="Resources\input_code_small.png" />
-    <BundleResource Include="Resources\input_code_small%402x.png" />
-    <BundleResource Include="Resources\input_code_small%403x.png" />
+    <BundleResource Include="Resources\inputbig.png" />
+    <BundleResource Include="Resources\inputbig%402x.png" />
+    <BundleResource Include="Resources\inputbig%403x.png" />
+    <BundleResource Include="Resources\inputsmall.png" />
+    <BundleResource Include="Resources\inputsmall%402x.png" />
+    <BundleResource Include="Resources\inputsmall%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.0.1.6495\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.0.1.6495\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

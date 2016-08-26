@@ -98,8 +98,8 @@ namespace SigningTest.Controls
 
 		private void InitImageSources()
 		{
-			_filledImageSource = new FileImageSource { File = "input_code_big" };
-			_emtpyImageSource = new FileImageSource { File = "input_code_small" };
+			_filledImageSource = new FileImageSource { File = "inputbig" };
+			_emtpyImageSource = new FileImageSource { File = "inputsmall" };
 		}
 
 		private void DrawLayout()
