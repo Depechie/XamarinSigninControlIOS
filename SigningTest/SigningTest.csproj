@@ -41,7 +41,7 @@
       <DependentUpon>SigningTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controls\Signing.cs" />
+    <Compile Include="Controls\PinEntry.cs" />
     <Compile Include="ViewModels\SigningViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,9 +5,9 @@
 			 xmlns:controls="clr-namespace:SigningTest.Controls;assembly:SigingTest"
 			 x:Class="SigningTest.SigningTestPage">
 	<StackLayout VerticalOptions="Center">
-		<controls:Signing x:Name="Pin"
-						  PinLength="6"
-						  Input="{Binding PinEntry, Mode=TwoWay}}"
-						  Command="{Binding ValidatePinCommand}" />
+		<controls:PinEntry x:Name="Pin"
+						   PinLength="6"
+						   Input="{Binding PinEntry, Mode=TwoWay}}"
+						   Command="{Binding ValidatePinCommand}" />
 	</StackLayout>
 </ContentPage>

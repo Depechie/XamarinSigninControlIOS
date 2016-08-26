@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace SigningTest.Controls
 {
-	public class Signing : ContentView
+	public class PinEntry : ContentView
 	{
 		private ImageSource _emtpyImageSource;
 		private ImageSource _filledImageSource;
@@ -17,25 +17,25 @@ namespace SigningTest.Controls
 
 		public static readonly BindableProperty PinLengthProperty = BindableProperty.Create(nameof(PinLength),
 																							typeof(int),
-																							typeof(Signing),
+																							typeof(PinEntry),
 																							6);
 		public static readonly BindableProperty IsLoadingProperty = BindableProperty.Create(nameof(IsLoading),
 																							typeof(bool),
-																							typeof(Signing),
+																							typeof(PinEntry),
 																							false,
 																							BindingMode.Default,
 																							null,
 																							IsLoadingPropertyChanged);
 		public static readonly BindableProperty InputProperty = BindableProperty.Create(nameof(InputView),
 																						typeof(string),
-																						typeof(Signing),
+																						typeof(PinEntry),
 																						string.Empty,
 																						BindingMode.Default,
 																						null,
 																						InputPropertyChanged);
 		public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command),
 																						  typeof(ICommand),
-																						  typeof(Signing),
+																						  typeof(PinEntry),
 																						  null);
 
 		public int PinLength
@@ -86,13 +86,13 @@ namespace SigningTest.Controls
 
 		private static void IsLoadingPropertyChanged(BindableObject bindable, object oldValue, object newValue)
 		{
-			var self = (Signing)bindable;
+			var self = (PinEntry)bindable;
 			self.IsLoading = (bool)newValue;
 		}
 
 		private static void InputPropertyChanged(BindableObject bindable, object oldValue, object newValue)
 		{
-			var self = (Signing)bindable;
+			var self = (PinEntry)bindable;
 			self._pinEntry.Text = (string)newValue;
 		}
 
