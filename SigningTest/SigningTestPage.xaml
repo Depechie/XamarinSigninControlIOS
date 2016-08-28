@@ -4,10 +4,15 @@
 			 xmlns:local="clr-namespace:SigningTest"
 			 xmlns:controls="clr-namespace:SigningTest.Controls;assembly:SigingTest"
 			 x:Class="SigningTest.SigningTestPage">
+  
 	<StackLayout VerticalOptions="Center">
-		<controls:PinEntry x:Name="Pin"
+    <controls:PinEntry x:Name="Pin"
 						   PinLength="6"
-						   Input="{Binding PinEntry, Mode=TwoWay}}"
-						   Command="{Binding ValidatePinCommand}" />
+						   Input="{Binding PinEntry, Mode=TwoWay}"
+						   Command="{Binding ValidatePinCommand}">
+      <controls:PinEntry.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnPinEntryTapped" />
+      </controls:PinEntry.GestureRecognizers>
+    </controls:PinEntry>
 	</StackLayout>
 </ContentPage>

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using SigningTest.Controls;
 using SigningTest.ViewModels;
 using System.Threading.Tasks;
@@ -18,9 +19,18 @@ namespace SigningTest
 		protected override void OnAppearing()
 		{
 			base.OnAppearing();
+            PinSetfocus();
+        }
 
-			Pin.SetFocus();
-		}
+	    public void OnPinEntryTapped(object sender, EventArgs args)
+        {
+	        PinSetfocus();
+	    }
+
+	    private void PinSetfocus()
+	    {
+            Pin.SetFocus();
+        }
 	}
 }
 
