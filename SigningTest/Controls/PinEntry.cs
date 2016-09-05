@@ -11,6 +11,7 @@ namespace SigningTest.Controls
 		private ImageSource _emtpyImageSource;
 		private ImageSource _filledImageSource;
 		private Image[] _pinImages;
+		private Label[] _pinText;
 		private Entry _pinEntry = new Entry() { HeightRequest = 0, WidthRequest = 0, Keyboard = Keyboard.Numeric, IsVisible = false };
 
 		private bool _isChanging = false;
@@ -37,6 +38,10 @@ namespace SigningTest.Controls
 																						  typeof(ICommand),
 																						  typeof(PinEntry),
 																						  null);
+		public static readonly BindableProperty IsPlainTextProperty = BindableProperty.Create(nameof(IsPlainText),
+		                                                                                      typeof(bool),
+		                                                                                      typeof(PinEntry),
+		                                                                                      false);
 
 		public int PinLength
 		{
@@ -62,6 +67,12 @@ namespace SigningTest.Controls
 			set { SetValue(CommandProperty, value); }
 		}
 
+		public bool IsPlainText
+		{
+			get { return (bool)GetValue(IsPlainTextProperty); }
+			set { SetValue(IsPlainTextProperty, value); }
+		}
+
 		/// <summary>
 		/// Init the control during OnParentSet to be sure all XAML based property values are known
 		/// </summary>
@@ -76,7 +87,7 @@ namespace SigningTest.Controls
 		public void Reset()
 		{
 			for (int i = 0; i < PinLength; i++)
-				_pinImages[i].IsVisible = false;
+				_pinImages[i].IsVisible = _pinText[i].IsVisible = false;
 		}
 
 		public void SetFocus()
@@ -105,6 +116,7 @@ namespace SigningTest.Controls
 		private void DrawLayout()
 		{
 			_pinImages = new Image[PinLength];
+			_pinText = new Label[PinLength];
 
 			var pinGrid = new Grid()
 			{
@@ -129,6 +141,15 @@ namespace SigningTest.Controls
 					IsVisible = false
 				};
 
+				_pinText[i] = new Label()
+				{
+					HorizontalOptions = LayoutOptions.Center,
+					VerticalOptions = LayoutOptions.Center,
+					//TODO: Glenn - We need to be able to bind this!
+					BackgroundColor = Color.White,
+					IsVisible = false
+				};
+
 				Image emptyImage = new Image()
 				{
 					Source = _emtpyImageSource,
@@ -140,6 +161,7 @@ namespace SigningTest.Controls
 
 				pinGrid.Children.Add(emptyImage, i, 0);
 				pinGrid.Children.Add(_pinImages[i], i, 0);
+				pinGrid.Children.Add(_pinText[i], i, 0);
 			}
 
 			Content = pinGrid;
@@ -166,12 +188,33 @@ namespace SigningTest.Controls
 
 			if (!string.IsNullOrEmpty(currentEntry))
 			{
-				_pinImages[currentEntry.Length - 1].IsVisible = true;
-				if (currentEntry.Length < PinLength)
-					_pinImages[currentEntry.Length].IsVisible = false;
+				if (IsPlainText)
+				{
+					_pinText[currentEntry.Length - 1].Text = currentEntry.ToCharArray().Last().ToString();
+					_pinText[currentEntry.Length - 1].IsVisible = true;
+					if (currentEntry.Length < PinLength)
+					{
+						_pinText[currentEntry.Length].IsVisible = false;
+						_pinText[currentEntry.Length].Text = string.Empty;
+					}
+				}
+				else
+				{
+					_pinImages[currentEntry.Length - 1].IsVisible = true;
+					if (currentEntry.Length < PinLength)
+						_pinImages[currentEntry.Length].IsVisible = false;
+				}
 			}
 			else
-				_pinImages[0].IsVisible = false;
+			{
+				if (IsPlainText)
+				{
+					_pinText[0].IsVisible = false;
+					_pinText[0].Text = string.Empty;
+				}
+				else
+					_pinImages[0].IsVisible = false;
+			}
 
 			if (!string.IsNullOrEmpty(currentEntry) && currentEntry.Length == PinLength && Command != null)
 				Command.Execute(null);

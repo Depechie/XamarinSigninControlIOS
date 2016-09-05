@@ -7,9 +7,10 @@
   
 	<StackLayout VerticalOptions="Center">
     <controls:PinEntry x:Name="Pin"
-						   PinLength="6"
-						   Input="{Binding PinEntry, Mode=TwoWay}"
-						   Command="{Binding ValidatePinCommand}">
+					   PinLength="6"
+					   IsPlainText="true"
+					   Input="{Binding PinEntry, Mode=TwoWay}"
+					   Command="{Binding ValidatePinCommand}">
       <controls:PinEntry.GestureRecognizers>
         <TapGestureRecognizer Tapped="OnPinEntryTapped" />
       </controls:PinEntry.GestureRecognizers>
